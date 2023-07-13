@@ -1,10 +1,43 @@
-import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import React, { useContext } from "react";
 import Map from "./Map";
 import { MapContext, MapGeometryContext } from "@/context/context";
 
-export default function Form() {
+
+interface FormProps {
+  onSubmit: (data: FormData) => void;
+}
+interface FormData {
+  name: string;
+  description: string;
+  geometry: string;
+}
+
+export default function Form({ onSubmit }: FormProps) {
+  const { mapGeometry } = useContext(MapGeometryContext);
+
+  const [formData, setFormData] = React.useState<FormData>({
+    name: "",
+    description: "",
+    geometry: JSON.stringify(mapGeometry),
+  });
+
+  // Update formData when mapGeometry changes
+  React.useEffect(() => {
+    setFormData({ ...formData, geometry: JSON.stringify(mapGeometry) });
+  }, [mapGeometry]);
+
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  }
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    onSubmit(formData);
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base font-semibold leading-7 text-gray-900">
@@ -77,11 +110,10 @@ export default function Form() {
 
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base font-semibold leading-7 text-gray-900">
-            Notifications
+            Land characteristics
           </h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
-            We'll always let you know about important changes, but you pick what
-            else you want to hear about.
+            These approximations will help you calculate the score.
           </p>
 
           <div className="mt-10 space-y-10">
@@ -161,12 +193,6 @@ export default function Form() {
       </div>
 
       <div className="mt-6 flex items-center justify-end gap-x-6">
-        <button
-          type="button"
-          className="text-sm font-semibold leading-6 text-gray-900"
-        >
-          Cancel
-        </button>
         <button
           type="submit"
           className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

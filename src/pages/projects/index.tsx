@@ -1,6 +1,5 @@
 import React from "react";
 import type { GetStaticProps } from "next";
-import Layout from "@/components/Layout";
 import ProjectCardRow, {
     ProjectCardRowProps,
 } from "@/components/ProjectCardRow";
@@ -27,24 +26,20 @@ type Props = {
 
 const ProjectCatalog: React.FC<ProjectCardRowProps> = (props) => {
     return (
-        <>
-            <Layout>
-                <div class="container page mx-auto  px-4">
-                    <div class="container">
-                        <h1>Projects Catalog</h1>
-                        <div class="flex flex-col ">
-                            <div>
-                                {props.feed.map((project: ProjectCardRowProps) => (
-                                    <div key={project.id} className="project p-1">
-                                        <ProjectCardRow project={project} />
-                                    </div>
-                                ))}
+        <div class="container page mx-auto  px-4">
+            <div class="container">
+                <h1>Projects Catalog</h1>
+                <div class="flex flex-col ">
+                    <div>
+                        {props.feed.map((project: ProjectCardRowProps) => (
+                            <div key={project.id} className="project p-1">
+                                <ProjectCardRow project={project} />
                             </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
-            </Layout>
-        </>
+            </div>
+        </div>
     );
 };
 
