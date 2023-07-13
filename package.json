@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write \"**/*.{js,ts,tsx}\""
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
@@ -26,6 +27,8 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "eslint-config-prettier": "^8.8.0",
+    "prettier": "^3.0.0",
     "prisma": "^5.0.0"
   }
 }
