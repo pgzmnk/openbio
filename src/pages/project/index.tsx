@@ -1,5 +1,5 @@
 import React from "react";
-import Form from "@/components/Form";
+import Form, { FormData } from "@/components/Form";
 import Router from "next/router";
 
 export default function Project() {
