@@ -22,18 +22,16 @@ export default function ProjectCardRow(props: ProjectCardRowProps) {
       <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
         {description}
       </p>
-      <a
-        href="#"
-        className="inline-flex items-center text-blue-600 hover:underline"
-      >
+      <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
         {author}
-      </a>
+      </p>
+
       <a
-        href="/project/{id}"
+        href={`/project/${id}`}
         class="inline-flex items-center text-blue-600 hover:underline"
       >
         View
       </a>
-    </div>
+    </div >
   );
 }
