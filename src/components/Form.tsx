@@ -63,7 +63,6 @@ export default function Form({ onSubmit }: FormProps) {
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
-    console.log("handleinputchange", name, value);
     setFormData({ ...formData, [name]: value });
   }
 

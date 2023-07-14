@@ -41,7 +41,6 @@ export default async function handler(
           if (err) {
             throw err;
           }
-          console.log("! response", response);
         },
       );
 
@@ -53,6 +52,6 @@ export default async function handler(
       res.status(400).send({ message: "Something went wrong." });
     }
   } else {
-    res.status(200).json({ name: "", description: "", geometry: "" });
+    res.status(400).send({ message: "Method not allowed." });
   }
 }
