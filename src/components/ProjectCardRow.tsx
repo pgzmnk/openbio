@@ -22,9 +22,7 @@ export default function ProjectCardRow(props: ProjectCardRowProps) {
       <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
         {description}
       </p>
-      <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
-        {author}
-      </p>
+      <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{author}</p>
 
       <a
         href={`/project/${id}`}
@@ -32,6 +30,6 @@ export default function ProjectCardRow(props: ProjectCardRowProps) {
       >
         View
       </a>
-    </div >
+    </div>
   );
 }

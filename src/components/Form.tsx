@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import Map from "./Map";
 import { MapContext, MapGeometryContext } from "@/context/context";
 
-
 interface FormProps {
   onSubmit: (data: FormData) => void;
 }
@@ -37,7 +36,6 @@ export default function Form({ onSubmit }: FormProps) {
   }
 
   return (
-
     <>
       <form onSubmit={handleSubmit}>
         <div className="space-y-12">
@@ -87,7 +85,6 @@ export default function Form({ onSubmit }: FormProps) {
                     defaultValue={""}
                   />
                 </div>
-
               </div>
 
               <div className="col-span-full">
@@ -106,7 +103,6 @@ export default function Form({ onSubmit }: FormProps) {
               </div>
             </div>
           </div>
-
 
           <div className="border-b border-gray-900/10 pb-12">
             <h2 className="text-base font-semibold leading-7 text-gray-900">
@@ -181,13 +177,13 @@ export default function Form({ onSubmit }: FormProps) {
                         Offers
                       </label>
                       <p className="text-gray-500">
-                        Get notified when a candidate accepts or rejects an offer.
+                        Get notified when a candidate accepts or rejects an
+                        offer.
                       </p>
                     </div>
                   </div>
                 </div>
               </fieldset>
-
             </div>
           </div>
         </div>
