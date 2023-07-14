@@ -16,7 +16,6 @@ export default async function handler(
   );
   var con = db.connect();
   con.run("USE climatebase;");
-  console.log("req.query", req.query);
 
   if (req.method === "GET") {
     try {
