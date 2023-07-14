@@ -7,6 +7,6 @@ export interface FormDataType {
   geometry: string;
 }
 
-export interface ApiErrorResponse {
+export interface ApiMessageResponse {
   message: string;
 }
