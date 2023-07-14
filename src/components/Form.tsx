@@ -39,7 +39,6 @@ export default function Form({ onSubmit }: FormProps) {
   return (
 
     <>
-      <div><Map /></div>
       <form onSubmit={handleSubmit}>
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
@@ -101,10 +100,8 @@ export default function Form({ onSubmit }: FormProps) {
                 <p className="mt-3 text-sm leading-6 text-gray-600">
                   Trace a polygon around the project site.
                 </p>
-                <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                  <div className="">
-
-                  </div>
+                <div className="border border-black">
+                  <Map />
                 </div>
               </div>
             </div>

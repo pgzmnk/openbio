@@ -6,6 +6,9 @@ import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import styles from "./Map.module.css";
 import { MapContext, MapGeometryContext } from "@/context/context";
+import 'mapbox-gl/dist/mapbox-gl.css';
+
+
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_API;
 
@@ -100,8 +103,7 @@ export default function Map() {
   return (
     <div>
       <div id="calculated-area"></div>
-
-      <div ref={mapContainer} className={`${styles.map_container} h-80 w-full`}>
+      <div id="map" ref={mapContainer} className={`${styles.map_container} h-80 w-full`}>
         <div className={styles.sidebar}>
           Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
         </div>
