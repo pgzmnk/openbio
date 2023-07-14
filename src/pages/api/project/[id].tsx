@@ -16,47 +16,25 @@ export default async function handler(
   );
   var con = db.connect();
   con.run("USE climatebase;");
-  // con.all('SHOW TABLES;', function (err, res) {
-  //     if (err) {
-  //         throw err;
-  //     }
-  //     console.log(res)
-  // });
+  console.log("req.query", req.query);
 
-  if (req.method === "POST") {
+  if (req.method === "GET") {
     try {
-      const data = {
-        name: name,
-        description: description,
-        geometry: geometry,
-        published: true,
-      };
       con.all(
-        `INSERT INTO project(id, name, description, geometry, published) 
-        VALUES ('${uuidv4()}', '${data.name}', '${data.description}', '${
-          data.geometry
-        }', ${data.published});
-            `,
-        function (err, res) {
+        `FROM project WHERE id = '${req.query.id}'`,
+        function (err, response) {
           if (err) {
             throw err;
           }
-          console.log(res);
+          if (response.length === 0) {
+            res.status(404).json({ message: "Project not found." });
+          } else {
+            res.status(200).json({ ...(response[0] as FormDataType) });
+          }
         },
       );
-
-      // const result = await prisma.project.create({
-      //     data
-      // });
-      res.status(200).json({
-        name: name,
-        description: description,
-        geometry: geometry,
-      });
     } catch (error) {
       res.status(400).send({ message: "Something went wrong." });
     }
-  } else {
-    res.status(200).json({ name: "", description: "", geometry: "" });
   }
 }
