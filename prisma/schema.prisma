@@ -12,7 +12,7 @@ generator client {
 
 model Project {
   id          String  @id @default(cuid())
-  title       String
+  name        String
   description String?
   geometry    String?
   centroid    String?
