@@ -54,5 +54,7 @@ export default async function handler(
         } catch (error) {
             res.status(400).send({ message: "Something went wrong." });
         }
+    } else {
+        res.status(400).send({ message: "Method not allowed." });
     }
 }
