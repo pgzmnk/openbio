@@ -1,22 +1,14 @@
 import React, { useContext } from "react";
 import Map from "./Map";
 import { MapContext, MapGeometryContext } from "@/context/context";
-
-interface FormProps {
-  onSubmit: (data: FormData) => void;
-}
-export interface FormData {
-  name: string;
-  description: string;
-  geometry: string;
-}
+import { FormDataType, FormProps } from "@/interfaces";
 
 export default function Form({ onSubmit }: FormProps) {
   const { mapGeometry } = useContext(MapGeometryContext);
 
-  const [formData, setFormData] = React.useState<FormData>({
-    name: "",
-    description: "",
+  const [formData, setFormData] = React.useState<FormDataType>({
+    name: "1",
+    description: "1",
     geometry: JSON.stringify(mapGeometry),
   });
 
@@ -27,6 +19,7 @@ export default function Form({ onSubmit }: FormProps) {
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
+    console.log("handleinputchange", name, value);
     setFormData({ ...formData, [name]: value });
   }
 
@@ -47,7 +40,7 @@ export default function Form({ onSubmit }: FormProps) {
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
               <div className="sm:col-span-4">
                 <label
-                  htmlFor="username"
+                  htmlFor="name"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
                   Project Name
@@ -56,11 +49,12 @@ export default function Form({ onSubmit }: FormProps) {
                   <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                     <input
                       type="text"
-                      name="username"
-                      id="username"
-                      autoComplete="username"
+                      name="name"
+                      id="name"
+                      autoComplete="name"
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                       placeholder="..."
+                      onChange={handleInputChange}
                     />
                   </div>
                 </div>
@@ -77,12 +71,14 @@ export default function Form({ onSubmit }: FormProps) {
                   Write a few sentences about the project.
                 </p>
                 <div className="mt-2">
-                  <textarea
-                    id="about"
-                    name="about"
-                    rows={3}
+                  <input
+                    id="description"
+                    type="textarea"
+                    name="description"
+                    // rows={3}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    defaultValue={""}
+                    placeholder="..."
+                    onChange={handleInputChange}
                   />
                 </div>
               </div>
