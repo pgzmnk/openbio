@@ -19,6 +19,7 @@
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.14",
+    "duckdb": "^0.8.1",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.9",
     "mapbox-gl": "^2.15.0",
