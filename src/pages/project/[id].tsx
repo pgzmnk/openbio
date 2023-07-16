@@ -26,6 +26,10 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     // fetch necessary data based on id
+    const project = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/project/${params.id}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    });
 }
 
 export default function Project() {
