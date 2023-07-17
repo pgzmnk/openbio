@@ -4,7 +4,6 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import LoginButton from "@/components/LoginButton";
 
-
 const navigation = [
   // { name: "Dashboard", href: "#", current: true },
   // { name: "Team", href: "#", current: false },
@@ -20,7 +19,6 @@ function classNames(...classes) {
 export default function Navbar() {
   return (
     <Disclosure as="nav" className="bg-gray-800">
-
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -67,10 +65,7 @@ export default function Navbar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-
                 <LoginButton />
-
-
               </div>
             </div>
           </div>

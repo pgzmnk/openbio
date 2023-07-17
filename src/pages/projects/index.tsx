@@ -15,10 +15,13 @@ export const getStaticProps: GetStaticProps = async () => {
   //   },
   // });
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/projects`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/projects`,
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      },
+    );
 
     if (!response.ok) {
       throw new Error("Failed to fetch projects");
@@ -36,7 +39,6 @@ export const getStaticProps: GetStaticProps = async () => {
       revalidate: 10,
     };
   }
-
 };
 
 type Props = {

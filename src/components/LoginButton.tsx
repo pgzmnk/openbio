@@ -1,5 +1,9 @@
 import { useSession, signIn, signOut } from "next-auth/react";
-import { Bars3Icon, BellIcon, ArrowRightCircleIcon } from "@heroicons/react/24/outline";
+import {
+  Bars3Icon,
+  BellIcon,
+  ArrowRightCircleIcon,
+} from "@heroicons/react/24/outline";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
@@ -11,9 +15,8 @@ export default function Component() {
   const { data: session } = useSession();
   return (
     <>
-
-      < Menu as="div" className="relative ml-3" >
-        {session?.user && (
+      <Menu as="div" className="relative ml-3">
+        {(session?.user && (
           // Logged in
           <>
             <div>
@@ -72,32 +75,31 @@ export default function Component() {
                         "block px-4 py-2 text-sm text-gray-700",
                       )}
                       onClick={(e) => {
-                        e.preventDefault()
-                        signOut()
+                        e.preventDefault();
+                        signOut();
                       }}
                     >
                       Sign out
                     </a>
-
                   )}
                 </Menu.Item>
               </Menu.Items>
             </Transition>
           </>
-        ) || (
-            // Not logged in 
-            < button
-              type="button"
-              className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-              onClick={() => signIn()}
-            >
-              <div class="inline-flex items-center">
-                <ArrowRightCircleIcon className="h-6 w-6" aria-hidden="true" />
-                <p>Login</p>
-              </div>
-            </button>
-          )}
-      </Menu >
+        )) || (
+          // Not logged in
+          <button
+            type="button"
+            className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+            onClick={() => signIn()}
+          >
+            <div class="inline-flex items-center">
+              <ArrowRightCircleIcon className="h-6 w-6" aria-hidden="true" />
+              <p>Login</p>
+            </div>
+          </button>
+        )}
+      </Menu>
     </>
   );
 }

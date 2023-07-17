@@ -6,13 +6,12 @@ type Props = {
 };
 
 const Layout: React.FC<Props> = (props) => {
-
   return (
     <div>
       <Navbar />
       <div className="layout">{props.children}</div>
     </div>
-  )
-}
+  );
+};
 
 export default Layout;
