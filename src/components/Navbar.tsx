@@ -2,6 +2,8 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import LoginButton from "@/components/LoginButton";
+
 
 const navigation = [
   // { name: "Dashboard", href: "#", current: true },
@@ -18,6 +20,7 @@ function classNames(...classes) {
 export default function Navbar() {
   return (
     <Disclosure as="nav" className="bg-gray-800">
+
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -70,7 +73,9 @@ export default function Navbar() {
                 >
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
+
                 </button>
+                <LoginButton />
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
