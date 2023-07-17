@@ -1,35 +1,42 @@
 import React from "react";
+import { useRouter } from "next/router";
 
-export function getAllProjectIds() {
-  return [
+
+export async function getAllProjectIds() {
+  const projects = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/projects`,
     {
-      params: {
-        id: "05db09ff-dcb3-4cb2-ac9b-f9337aaa6d35",
-      },
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
     },
-    {
-      params: {
-        id: "bf3101d2-a8b4-499b-b692-f2f3c52ee498",
-      },
+  ).then((res) => res.json())
+
+  return projects.map((project: any) => ({
+    params: {
+      id: project.id,
     },
-  ];
+  }))
 }
 
+// tells Next.js what static routes (paths) of the website exist
 export async function getStaticPaths() {
   // return array of possible values for id
-  const paths = getAllProjectIds();
-  return { paths, fallback: false };
+  const paths = await getAllProjectIds();
+  return { paths, fallback: true };
 }
 
 export async function getStaticProps({ params }) {
   // fetch necessary data based on id
-  const project = await fetch(
+  const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/project/${params.id}`,
     {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     },
   );
+
+  const project = await response.json();
+  return { props: project }
 }
 
 export default function Project() {

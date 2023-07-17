@@ -10,8 +10,8 @@ export default function Project() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
-      }).then((res) => {});
-      // await Router.push("/drafts");
+      })
+      await Router.push(`/project/${formData.id}`);
     } catch (error) {
       console.error(error);
     }

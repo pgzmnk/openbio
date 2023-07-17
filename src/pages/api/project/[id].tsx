@@ -3,7 +3,6 @@ import { FormDataType, FormProps, ApiMessageResponse } from "@/interfaces";
 import { getSession } from "next-auth/react";
 import prisma from "@/lib/prisma";
 import duckdb from "duckdb";
-import { v4 as uuidv4 } from "uuid";
 
 export default async function handler(
   req: NextApiRequest,
