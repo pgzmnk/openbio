@@ -9,20 +9,13 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<FormDataType | ApiMessageResponse>,
 ) {
-  const { name, description, geometry } = req.body;
+  const { name, description, geometry, authorId } = req.body;
   // const session = await getSession({ req }); // make endpoint private
   var db = new duckdb.Database(
     `md:?motherduck_token=${process.env.NEXT_PUBLIC_MOTHERDUCK_TOKEN}`,
   );
   var con = db.connect();
   con.run("USE climatebase;");
-  // con.all('SHOW TABLES;', function (err, res) {
-  //     if (err) {
-  //         throw err;
-  //     }
-  //     console.log(res)
-  // });
-
   if (req.method === "POST") {
     try {
       const data = {
@@ -30,15 +23,17 @@ export default async function handler(
         description: description,
         geometry: geometry,
         published: true,
+        authorId: authorId
       };
       con.all(
-        `INSERT INTO project(id, name, description, geometry, published) 
-        VALUES ('${uuidv4()}', '${data.name}', '${data.description}', '${
-          data.geometry
-        }', ${data.published});
+        `INSERT INTO project(id, name, description, geometry, published, authorId) 
+        VALUES ('${uuidv4()}', '${data.name}', '${data.description}', '${data.geometry
+        }', ${data.published}, '${data.authorId}');
             `,
         function (err, response) {
           if (err) {
+            console.log("Error: writing project to db failed.");
+            console.log(err);
             throw err;
           }
         },

@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import Map from "./Map";
 import { MapContext, MapGeometryContext } from "@/context/context";
 import { FormDataType, FormProps } from "@/interfaces";
+import { useSession, signIn, signOut } from "next-auth/react";
+import { v4 as uuidv4 } from "uuid";
 
 const questions = [
   {
@@ -49,11 +51,13 @@ function QuestionComponent({ question }) {
 
 export default function Form({ onSubmit }: FormProps) {
   const { mapGeometry } = useContext(MapGeometryContext);
-
+  const { data: session } = useSession();
   const [formData, setFormData] = React.useState<FormDataType>({
+    id: uuidv4(),
     name: "1",
     description: "1",
     geometry: JSON.stringify(mapGeometry),
+    authorId: "default"
   });
 
   // Update formData when mapGeometry changes
@@ -67,6 +71,7 @@ export default function Form({ onSubmit }: FormProps) {
   }
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    setFormData({ ...formData, authorId: session?.user?.email || "default" });
     event.preventDefault();
     onSubmit(formData);
   }
