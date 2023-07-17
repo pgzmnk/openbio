@@ -13,6 +13,7 @@ function classNames(...classes) {
 
 export default function Component() {
   const { data: session } = useSession();
+  const userImage = session?.user?.image || "https://images.unsplash.com/photo-1586374579358-9d19d632b6df";
   return (
     <>
       <Menu as="div" className="relative ml-3">
@@ -24,8 +25,7 @@ export default function Component() {
                 <span className="sr-only">Open user menu</span>
                 <img
                   className="h-8 w-8 rounded-full"
-                  src="https://images.unsplash.com/photo-1586374579358-9d19d632b6df"
-                  // src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  src={userImage}
                   alt=""
                 />
               </Menu.Button>
@@ -87,18 +87,18 @@ export default function Component() {
             </Transition>
           </>
         )) || (
-          // Not logged in
-          <button
-            type="button"
-            className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-            onClick={() => signIn()}
-          >
-            <div class="inline-flex items-center">
-              <ArrowRightCircleIcon className="h-6 w-6" aria-hidden="true" />
-              <p>Login</p>
-            </div>
-          </button>
-        )}
+            // Not logged in
+            <button
+              type="button"
+              className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+              onClick={() => signIn()}
+            >
+              <div class="inline-flex items-center">
+                <ArrowRightCircleIcon className="h-6 w-6" aria-hidden="true" />
+                <p>Login</p>
+              </div>
+            </button>
+          )}
       </Menu>
     </>
   );
