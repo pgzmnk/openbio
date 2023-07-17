@@ -13,7 +13,9 @@ function classNames(...classes) {
 
 export default function Component() {
   const { data: session } = useSession();
-  const userImage = session?.user?.image || "https://images.unsplash.com/photo-1586374579358-9d19d632b6df";
+  const userImage =
+    session?.user?.image ||
+    "https://images.unsplash.com/photo-1586374579358-9d19d632b6df";
   return (
     <>
       <Menu as="div" className="relative ml-3">
@@ -23,11 +25,7 @@ export default function Component() {
             <div>
               <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                 <span className="sr-only">Open user menu</span>
-                <img
-                  className="h-8 w-8 rounded-full"
-                  src={userImage}
-                  alt=""
-                />
+                <img className="h-8 w-8 rounded-full" src={userImage} alt="" />
               </Menu.Button>
             </div>
             <Transition
@@ -87,18 +85,18 @@ export default function Component() {
             </Transition>
           </>
         )) || (
-            // Not logged in
-            <button
-              type="button"
-              className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-              onClick={() => signIn()}
-            >
-              <div class="inline-flex items-center">
-                <ArrowRightCircleIcon className="h-6 w-6" aria-hidden="true" />
-                <p>Login</p>
-              </div>
-            </button>
-          )}
+          // Not logged in
+          <button
+            type="button"
+            className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+            onClick={() => signIn()}
+          >
+            <div class="inline-flex items-center">
+              <ArrowRightCircleIcon className="h-6 w-6" aria-hidden="true" />
+              <p>Login</p>
+            </div>
+          </button>
+        )}
       </Menu>
     </>
   );

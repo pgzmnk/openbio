@@ -1,7 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-
 export async function getAllProjectIds() {
   const projects = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/projects`,
@@ -9,13 +8,13 @@ export async function getAllProjectIds() {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     },
-  ).then((res) => res.json())
+  ).then((res) => res.json());
 
   return projects.map((project: any) => ({
     params: {
       id: project.id,
     },
-  }))
+  }));
 }
 
 // tells Next.js what static routes (paths) of the website exist
@@ -36,7 +35,7 @@ export async function getStaticProps({ params }) {
   );
 
   const project = await response.json();
-  return { props: project }
+  return { props: project };
 }
 
 export default function Project() {

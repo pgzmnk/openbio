@@ -24,12 +24,11 @@ export default async function handler(
         description: description,
         geometry: geometry,
         published: true,
-        authorId: authorId
+        authorId: authorId,
       };
       con.all(
         `INSERT INTO project(id, name, description, geometry, published, authorId) 
-        VALUES ('${data.id}', '${data.name}', '${data.description}', '${data.geometry
-        }', ${data.published}, '${data.authorId}');
+        VALUES ('${data.id}', '${data.name}', '${data.description}', '${data.geometry}', ${data.published}, '${data.authorId}');
             `,
         function (err, response) {
           if (err) {

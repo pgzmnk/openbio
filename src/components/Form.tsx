@@ -57,7 +57,7 @@ export default function Form({ onSubmit }: FormProps) {
     name: "1",
     description: "1",
     geometry: JSON.stringify(mapGeometry),
-    authorId: "default"
+    authorId: "default",
   });
 
   // Update formData when mapGeometry changes
