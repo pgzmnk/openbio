@@ -71,9 +71,13 @@ export default function Form({ onSubmit }: FormProps) {
   }
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    setFormData({ ...formData, authorId: session?.user?.email || "default" });
     event.preventDefault();
-    onSubmit(formData);
+
+    const updatedFormData = {
+      ...formData,
+      authorId: session?.user?.email || "default",
+    };
+    onSubmit(updatedFormData);
   }
 
   return (
