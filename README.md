@@ -9,3 +9,12 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+
+## Deploy to vercel
+
+Vercel tracks the repo https://github.com/pgzmnk/openbio.git. Push to it with:
+
+```bash
+git push pg main
+```
