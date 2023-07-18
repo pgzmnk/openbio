@@ -1,5 +1,4 @@
 import React from "react";
-import { useRouter } from "next/router";
 
 export async function getAllProjectIds() {
   const projects = await fetch(
@@ -24,7 +23,7 @@ export async function getStaticPaths() {
   return { paths, fallback: true };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: { params: { id: string } }) {
   // fetch necessary data based on id
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/project/${params.id}`,

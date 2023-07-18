@@ -5,7 +5,7 @@ interface Project {
   author: string;
 }
 
-interface ProjectCardRowProps {
+export interface ProjectCardRowProps {
   project: Project;
 }
 

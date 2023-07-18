@@ -1,9 +1,7 @@
 import React from "react";
 import type { GetStaticProps } from "next";
-import ProjectCardRow, {
-  ProjectCardRowProps,
-} from "@/components/ProjectCardRow";
-import prisma from "@/lib/prisma";
+import ProjectCardRow from "@/components/ProjectCardRow";
+import { ProjectCardRowProps } from "@/components/ProjectCardRow";
 
 export const getStaticProps: GetStaticProps = async () => {
   // const feed = await prisma.project.findMany({
@@ -45,16 +43,18 @@ type Props = {
   projects: ProjectCardRowProps[];
 };
 
-const ProjectCatalog: React.FC<ProjectCardRowProps> = (props) => {
+
+const ProjectCatalog: React.FC<Props> = ({ projects }) => {
+
   return (
     <div class="container page mx-auto  px-4">
       <div class="container">
         <h1>Projects Catalog</h1>
         <div class="flex flex-col ">
           <div>
-            {props.feed?.map((project: ProjectCardRowProps) => (
-              <div key={project.id} className="project p-1">
-                <ProjectCardRow project={project} />
+            {projects?.map((project: ProjectCardRowProps) => (
+              <div key={project.project.id} className="project p-1">
+                <ProjectCardRow project={project.project} />
               </div>
             ))}
           </div>

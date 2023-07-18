@@ -14,10 +14,10 @@ export const MapContext = createContext<MapContextType>({ map: null });
 
 export const MapGeometryContext = createContext<MapGeometryContextType>({
   mapGeometry: null,
-  setMapGeometry: () => {},
+  setMapGeometry: () => { },
 });
 
-export default function Context({ children }) {
+export default function Context({ children }: { children: React.ReactNode }) {
   const map = useRef(null);
   const [mapGeometry, setMapGeometry] = useState<FeatureCollection | null>(
     null,

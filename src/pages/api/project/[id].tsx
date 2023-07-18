@@ -1,7 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { FormDataType, FormProps, ApiMessageResponse } from "@/interfaces";
-import { getSession } from "next-auth/react";
-import prisma from "@/lib/prisma";
+import { FormDataType, ApiMessageResponse } from "@/interfaces";
 import duckdb from "duckdb";
 
 export default async function handler(

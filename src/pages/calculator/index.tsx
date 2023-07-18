@@ -7,7 +7,7 @@ export default function Calculator() {
   gradioAppUrl.searchParams.set("username", username);
 
   return (
-    <div class="flex-vertical h-screen">
+    <div className="flex-vertical h-screen">
       <h1>Bioscore calculator</h1>
       {/* <script
         type="module"

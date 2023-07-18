@@ -1,11 +1,18 @@
 import React, { useContext } from "react";
 import Map from "./Map";
-import { MapContext, MapGeometryContext } from "@/context/context";
+import { MapGeometryContext } from "@/context/context";
 import { FormDataType, FormProps } from "@/interfaces";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { v4 as uuidv4 } from "uuid";
 
-const questions = [
+
+interface Question {
+  text: string;
+  type: "select" | "boolean";
+  options?: string[];
+}
+
+const questions: Question[] = [
   {
     text: "What's the prevailing type of grassland on this plot?",
     type: "select",
@@ -17,7 +24,7 @@ const questions = [
   },
 ];
 
-function QuestionComponent({ question }) {
+function QuestionComponent({ question }: { question: Question }) {
   return (
     <>
       <legend className="text-sm font-semibold leading-6 text-gray-900">
